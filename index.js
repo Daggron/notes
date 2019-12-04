@@ -2,6 +2,7 @@ import express from 'express';
 import userRoutes from './server/api/routes/user.route';
 import mongoose from 'mongoose';
 import 'dotenv/config';
+import setRedis from './server/workers/index';
 
 mongoose.Promise = global.Promise;
 mongoose.connect(process.env.DB,{
@@ -23,6 +24,8 @@ db.on('error',(err)=>{
 
 const app = express();
 app.use(express.json());
+
+// setRedis();
 
 app.get('/',(req,res)=>{
     res.status(200).json({

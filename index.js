@@ -47,6 +47,12 @@ app.use(Passport.session());
 
 // setRedis();
 
+app.use('*',(req,res,next)=>{
+    req.session.user = req.user || null;
+    res.locals.user = req.user || null;
+    next();
+});
+
 app.use('/notes',userRoutes);
 app.use('/authenticate',authRoutes);
 

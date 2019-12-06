@@ -8,7 +8,9 @@ const getAsync = promisify(client.get).bind(client);
 const setAsync = promisify(client.set).bind(client);
 const router = express.Router();
 
-router.route('/all').get(async (req,res)=>{
+import  isAuth  from '../authentication/isAuth';
+
+router.route('/all').get(isAuth ,async (req,res)=>{
     const data = await  getAsync('notes');
     if(data){
         const notes = JSON.parse(data);
@@ -29,7 +31,7 @@ router.route('/all').get(async (req,res)=>{
     }
 });
 
-router.route('/post').post((req,res)=>{
+router.route('/post').post(isAuth,(req,res)=>{
     let note = new Notes();
     console.log(req.body.note)
     note.user = req.body.username;
@@ -47,7 +49,7 @@ router.route('/post').post((req,res)=>{
     })
 })
 
-router.route('/user/:id').get(async (req,res)=>{
+router.route('/user/:id').get(isAuth,async (req,res)=>{
     const data = await getAsync(req.params.id);
     if(data){
         let notes = JSON.parse(data)

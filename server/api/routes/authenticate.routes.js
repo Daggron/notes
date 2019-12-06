@@ -47,11 +47,25 @@ router.route('/signup').post(async (req,res)=>{
     }
 });
 
+router.route('/login').get(async (req,res)=>{
+    return res.json({
+        user:false,
+        message:"You are not logged in"
+    })
+})
 router.route('/login').post(async (req,res,next)=>{
     passport.authenticate('local',{
         successRedirect:"/notes/all",
-        failureRedirect:"/login"
+        failureRedirect:"/authenticate/login"
     })(req,res,next)
+})
+
+router.route('/logout').get(async (req,res)=>{
+    req.logOut();
+    res.json({
+        user:false,
+        message:"You are now logged out from the records"
+    })
 })
 
 

@@ -18,7 +18,7 @@ router.route('/notes/all').get(async (req,res)=>{
     }
     else{
         Notes.find()
-        .select('_id user notes')
+        .select('_id user notes title isImportant')
         .exec()
         .then(notes=>{
             res.json({notes})

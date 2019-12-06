@@ -1,0 +1,66 @@
+Arguments: 
+  /usr/local/bin/node /usr/local/bin/yarn add @material-ui
+
+PATH: 
+  /u01/app/oracle/product/11.2.0/xe/bin:/u01/app/oracle/product/11.2.0/xe/bin:/home/linuxbrew/.linuxbrew/bin:/home/linuxbrew/.linuxbrew/sbin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/games:/usr/local/games:/snap/bin:/home/daggron/Android/Sdk/emulator:/home/daggron/Android/Sdk/tools:/home/daggron/Android/Sdk/tools/bin:/home/daggron/Android/Sdk/platform-tools:/home/daggron/Android/Sdk/emulator:/home/daggron/Android/Sdk/tools:/home/daggron/Android/Sdk/tools/bin:/home/daggron/Android/Sdk/platform-tools
+
+Yarn version: 
+  1.17.3
+
+Node version: 
+  10.16.3
+
+Platform: 
+  linux x64
+
+Trace: 
+  Error: https://registry.yarnpkg.com/@material-ui: Request "https://registry.yarnpkg.com/@material-ui" returned a 405
+      at Request.params.callback [as _callback] (/usr/local/lib/node_modules/yarn/lib/cli.js:66839:18)
+      at Request.self.callback (/usr/local/lib/node_modules/yarn/lib/cli.js:140464:22)
+      at Request.emit (events.js:198:13)
+      at Request.<anonymous> (/usr/local/lib/node_modules/yarn/lib/cli.js:141436:10)
+      at Request.emit (events.js:198:13)
+      at IncomingMessage.<anonymous> (/usr/local/lib/node_modules/yarn/lib/cli.js:141358:12)
+      at Object.onceWrapper (events.js:286:20)
+      at IncomingMessage.emit (events.js:203:15)
+      at endReadableNT (_stream_readable.js:1145:12)
+      at process._tickCallback (internal/process/next_tick.js:63:19)
+
+npm manifest: 
+  {
+    "name": "editor",
+    "version": "1.0.0",
+    "description": "",
+    "main": "index.js",
+    "scripts": {
+      "start": "node index.js",
+      "dev": "concurrently \"nodemon --exec babel-node index.js\"  "
+    },
+    "keywords": [],
+    "author": "",
+    "license": "ISC",
+    "dependencies": {
+      "bcryptjs": "^2.4.3",
+      "concurrently": "^5.0.0",
+      "dotenv": "^8.2.0",
+      "express": "^4.17.1",
+      "mongoose": "^5.7.13",
+      "node-cron": "^2.0.3",
+      "node-redis": "^0.1.7",
+      "passport": "^0.4.0",
+      "passport-local": "^1.0.0",
+      "redis": "^2.8.0"
+    },
+    "devDependencies": {
+      "@babel/core": "^7.7.4",
+      "@babel/node": "^7.7.4",
+      "@babel/preset-env": "^7.7.4",
+      "nodemon": "^2.0.1"
+    }
+  }
+
+yarn manifest: 
+  No manifest
+
+Lockfile: 
+  No lockfile

@@ -6,7 +6,7 @@ const setAsync = promisify(client.set).bind(client);
 
 export default async function fetchNotes(){
     console.log('running func')
-    let data = await Notes.find({}).select('_id user notes');
+    let data = await Notes.find({}).select('_id user notes title isImportant');
     let notes = await JSON.stringify(data);
     let success = await setAsync('notes',notes);
     console.log({success});

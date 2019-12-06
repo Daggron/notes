@@ -5,9 +5,17 @@ const notesSchema = new mongoose.Schema({
         type:String,
         required:true
     },
+    title:{
+        type:String,
+        required:true,
+    },
     notes:{
         type:Object,
         required:true
+    },
+    isImportant:{
+        type:Boolean,
+        default:false
     },
     date:{
         type:Date,

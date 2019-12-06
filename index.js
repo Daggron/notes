@@ -3,6 +3,7 @@ import userRoutes from './server/api/routes/user.route';
 import mongoose from 'mongoose';
 import 'dotenv/config';
 import setRedis from './server/workers/index';
+import cors from 'cors';
 
 mongoose.Promise = global.Promise;
 mongoose.connect(process.env.DB,{
@@ -24,6 +25,7 @@ db.on('error',(err)=>{
 
 const app = express();
 app.use(express.json());
+app.use(cors());
 
 // setRedis();
 

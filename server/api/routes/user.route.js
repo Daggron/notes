@@ -31,14 +31,15 @@ router.route('/all').get(isAuth ,async (req,res)=>{
     }
 });
 
-router.route('/post').post(isAuth,(req,res)=>{
+router.route('/post').post((req,res)=>{
     let note = new Notes();
     console.log(req.body.note)
     note.user = req.body.username;
     note.notes = req.body.note;
+    note.title = req.body.title ;
     note.save()
     .then(()=>{
-        res.json(
+      return  res.json(
             {
                 Posted : true
             }

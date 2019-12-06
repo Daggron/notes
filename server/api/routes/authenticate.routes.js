@@ -62,6 +62,7 @@ router.route('/login').post(async (req,res,next)=>{
 
 router.route('/logout').get(async (req,res)=>{
     req.logOut();
+    req.session.destroy();
     res.json({
         user:false,
         message:"You are now logged out from the records"

@@ -5,6 +5,7 @@ import 'medium-editor/dist/css/themes/default.css';
 import {makeStyles} from '@material-ui/styles';
 import  Fab  from '@material-ui/core/Fab';
 import DoneIcon from '@material-ui/icons/Done';
+import Axios from 'axios';
 
 
 const useStyles = makeStyles(theme=>({
@@ -30,8 +31,26 @@ const useStyles = makeStyles(theme=>({
 
 export default function AddNotes() {
     const classes = useStyles();
+    const [notes , setNotes] = React.useState("");
    const  handleChange = (text,medium)=>{
-        console.log(text)
+    //    console.log(text)
+       let data  = text;
+       setNotes(data);
+    }
+
+    const handleSave = ()=>{
+        console.log('I am running')
+        console.log(notes);
+        Axios.post('http://localhost:5000/notes/post',{
+            title:"New Note",
+            username:"Kenny Omega",
+            note:notes
+        })
+        .then((data)=>{
+            console.log(data.data);
+        }).catch(err=>{
+            console.log(err)
+        })
     }
 
     return (
@@ -41,7 +60,7 @@ export default function AddNotes() {
                 </Editor>
                 
             </div>
-             <Fab className={classes.save} color="secondary" variant="contained">
+             <Fab onClick={handleSave} className={classes.save} color="secondary" variant="extended">
                  <DoneIcon/>
                     Save
              </Fab>

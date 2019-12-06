@@ -10,8 +10,7 @@ const notesSchema = new mongoose.Schema({
         required:true,
     },
     notes:{
-        type:Object,
-        required:true
+        type:String
     },
     isImportant:{
         type:Boolean,

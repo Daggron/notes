@@ -8,7 +8,7 @@ const getAsync = promisify(client.get).bind(client);
 const setAsync = promisify(client.set).bind(client);
 const router = express.Router();
 
-router.route('/notes/all').get(async (req,res)=>{
+router.route('/all').get(async (req,res)=>{
     const data = await  getAsync('notes');
     if(data){
         const notes = JSON.parse(data);
@@ -29,7 +29,7 @@ router.route('/notes/all').get(async (req,res)=>{
     }
 });
 
-router.route('/notes/post').post((req,res)=>{
+router.route('/post').post((req,res)=>{
     let note = new Notes();
     console.log(req.body.note)
     note.user = req.body.username;

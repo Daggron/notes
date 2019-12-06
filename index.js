@@ -4,6 +4,10 @@ import mongoose from 'mongoose';
 import 'dotenv/config';
 import setRedis from './server/workers/index';
 import cors from 'cors';
+import expressSession from 'express-session';
+import Passport from 'passport';
+import ExpressValidator from 'express-validator';
+import authRoutes from './server/api/routes/authenticate.routes';
 
 mongoose.Promise = global.Promise;
 mongoose.connect(process.env.DB,{
@@ -24,18 +28,27 @@ db.on('error',(err)=>{
 })
 
 const app = express();
+
 app.use(express.json());
+
 app.use(cors());
+
+app.use(expressSession({
+    secret:'A keyboard cat',
+    saveUninitialized:true,
+    resave:true,
+}));
+
+app.use(ExpressValidator());
+
+app.use(Passport.initialize());
+app.use(Passport.session());
+
 
 // setRedis();
 
-app.get('/',(req,res)=>{
-    res.status(200).json({
-        'message':"Hello I am working Fine"
-    })
-})
-
-app.use('/users',userRoutes);
+app.use('/notes',userRoutes);
+app.use('/authenticate',authRoutes);
 
 const port = process.env.PORT || 3000;
 app.listen(port,()=>{

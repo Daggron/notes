@@ -1,7 +1,11 @@
 import Express from 'express';
 import Bcryptjs from 'bcryptjs';
 import User from '../models/user.model';
+import passport from 'passport';
 const router = Express.Router();
+import pass from '../authentication/passport';
+import { runInNewContext } from 'vm';
+pass(passport);
 
 router.route('/signup').post(async (req,res)=>{
     req.check('email','Email is not valid').isEmail();
@@ -41,6 +45,13 @@ router.route('/signup').post(async (req,res)=>{
             })
         })
     }
+});
+
+router.route('/login').post(async (req,res,next)=>{
+    passport.authenticate('local',{
+        successRedirect:"/notes/all",
+        failureRedirect:"/login"
+    })(req,res,next)
 })
 
 
